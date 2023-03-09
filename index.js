@@ -143,6 +143,11 @@ function swap(a, b, array) {
   }
 }
 
+
+
+
+
+
 const mainFunction = function(string){
 
 permutationArray = [];
@@ -165,18 +170,18 @@ const recursionFunction = function(step, array, permutationArray){
         console.log( step )
         for(j = 0; j<array.length; j++){
             console.log("array" + array)
-            console.log("1 i " + array[i])
-            console.log("2 j " + array[j])
+            console.log("i " + i)
+            console.log("j " + j)
             
             var newArray = swap(i, j, array);
             if(newArray == null){
                 break;
             }
-            else if(step<array.length){
+            else if(step<=array.length){
                  step += 1;
                 recursionFunction(step, newArray,permutationArray)
             }
-            else if (step=array.length-1){
+            else if (step>=array.length){
                 console.log("permarray;")
                 console.log(permutationArray)
             }
@@ -185,4 +190,168 @@ const recursionFunction = function(step, array, permutationArray){
 }
 
 
-mainFunction("call");
+
+async function swap2(a, b, array) {
+    console.log("swap2")
+    newArray = array
+    if(a !== b){
+    temp = newArray[a];
+    newArray[a] = newArray[b];
+    newArray[b] = temp;
+    console.log("swap "+ newArray)
+
+    var newArrayCut = [];
+    
+    if(a<b){newArrayCut = newArray.splice(a, b+1 )}
+                
+    else if (b<a){newArrayCut = newArray.splice(a, b+1)}
+    console.log("newArrayCut")
+            console.log(newArrayCut)
+    var swapArray = []
+    swapArray.push(newArray)
+    swapArray.push(newArrayCut)
+    console.log(swapArray)
+
+    return swapArray
+
+
+  }
+}
+
+
+
+
+const mainFunction2 = function(string){
+
+permutationArray = [];
+var originalStep= 0;
+
+var StringToArray = string.split('');
+
+recursionFunction2(originalStep, StringToArray, permutationArray);
+
+
+}
+
+const recursionFunction2 = function(step, array, permutationArray){
+  
+    if(permutationArray.indexOf(array.join(''))===-1){
+        console.log("newArray")
+        console.log(array)
+
+         permutationArray.push(array.join(''));
+
+
+    }
+    console.log("start of loop")
+    // console.log(permutationArray)
+
+
+    
+    for(var i = 0; i<array.length; i++ ){
+        
+        console.log("step")
+        console.log( step )
+        for(j = 1; j<array.length; j++){
+            var newArrayPre= [...array]
+            if(i<j){
+                
+                newArrayPre=newArrayPre.splice(i, j+1 ) 
+                // console.log(newArray)
+                
+                 }
+                
+                else if (j<i){
+                
+                newArrayPre=newArrayPre.splice(j, i+1 ) 
+               }
+               if(permutationArray.indexOf(newArrayPre.join(''))===-1 && newArrayPre.length>1){
+                                console.log("newarraypre")
+                                console.log(newArrayPre)
+
+                    // console.log("newarraycut")
+                    // console.log(newArrayPre)
+                 permutationArray.push(newArrayPre.join(''));
+                }
+
+                       
+            var newArray = swap2(i, j, array);
+            if(newArray == null){
+                break;
+            }
+            else if(step<array.length){
+                var newArrayCut1
+                var newArrayCut
+                newArrayCut1 =[...newArray]
+
+                if(i<j){
+                
+                newArrayCut=newArrayCut1.splice(i, j+1 ) 
+                // console.log(newArray)
+                
+                 }
+                
+                else if (j<i){
+                
+                newArrayCut=newArrayCut1.splice(j, i+1 ) 
+                console.log(newArray)
+               }
+               if(permutationArray.indexOf(newArrayCut.join(''))===-1 && newArrayCut.length>1){
+                    console.log("newarraycut")
+                    console.log(newArrayCut)
+                 permutationArray.push(newArrayCut.join(''));
+                }
+                 step += 1;
+
+                recursionFunction2(step, newArray,permutationArray)
+            }
+            else if (step>=array.length){
+                console.log("permarray;")
+                console.log(permutationArray)
+            }
+        }
+    }
+}
+
+
+function swap2(a, b, array) {
+    console.log("swap2")
+    newArray = array
+    if(a !== b){
+    temp = newArray[a];
+    newArray[a] = newArray[b];
+    newArray[b] = temp;
+    console.log("swap "+ newArray)
+
+
+
+    return newArray
+
+
+  }
+}
+
+
+
+
+mainFunction2("cat");
+
+
+
+                                         
+            //     if(i<j){
+            //     var newArrayCut = newArray.splice(i, j+1 ) 
+                
+
+            //      }
+                
+            //     else if (j<i){
+            //     var newArrayCut = newArray.splice(j, i+1) 
+            //    }
+
+            //     if(newArrayCut.length>1){
+            //         console.log("pushing the cut array")
+            //           if(permutationArray.indexOf(newArrayCut.join(''))===-1){
+            //             permutationArray.push(newArrayCut.join(''));
+            //     }
+            //     }
