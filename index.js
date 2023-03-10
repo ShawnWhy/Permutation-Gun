@@ -138,6 +138,7 @@ function swap(a, b, array) {
     newArray[a] = newArray[b];
     newArray[b] = temp;
     console.log("swap "+ newArray)
+    console.log("oldarray "+array)
     return newArray
 
   }
@@ -156,39 +157,57 @@ var originalStep= 0;
 var StringToArray = string.split('');
 
 recursionFunction(originalStep, StringToArray, permutationArray);
+console.log("permutation array")
+
+    console.log(permutationArray);
+
 
 
 }
 
 const recursionFunction = function(step, array, permutationArray){
+    
+    console.log(step)
     if(permutationArray.indexOf(array.join(''))===-1){
          permutationArray.push(array.join(''));
+         
     }
     
-    for(var i = step; i<array.length; i++ ){
-        console.log(permutationArray)
-        console.log( step )
-        for(j = 0; j<array.length; j++){
+    
+    for(let i = step; i<array.length; i++ ){
+        step += 1;
+        
+        for(let j = 0; j<array.length; j++){
+            
             console.log("array" + array)
             console.log("i " + i)
             console.log("j " + j)
             
             var newArray = swap(i, j, array);
-            if(newArray == null){
-                break;
+           
+            if(newArray==null){
+                newArray=array
             }
-            else if(step<=array.length){
-                 step += 1;
-                recursionFunction(step, newArray,permutationArray)
+
+            if( 
+                step<=array.length){
+                
+                
+                 
+                recursionFunction(step,newArray,permutationArray)
             }
-            else if (step>=array.length){
-                console.log("permarray;")
+            else if(step>=array.length){
+                 console.log("tempArray")
                 console.log(permutationArray)
             }
         }
+            
+          
+        }
     }
-}
 
+// create a subarray without the step variable so that it stops when the main loop stops 
+// and prints only if all steps are done with subfunctions if both level and step 
 
 
 async function swap2(a, b, array) {
@@ -234,6 +253,7 @@ recursionFunction2(originalStep, StringToArray, permutationArray);
 }
 
 const recursionFunction2 = function(step, array, permutationArray){
+    step+=1
   
     if(permutationArray.indexOf(array.join(''))===-1){
         console.log("newArray")
@@ -249,7 +269,7 @@ const recursionFunction2 = function(step, array, permutationArray){
 
     
     for(var i = 0; i<array.length; i++ ){
-        
+        step += 1;
         console.log("step")
         console.log( step )
         for(j = 1; j<array.length; j++){
@@ -279,7 +299,7 @@ const recursionFunction2 = function(step, array, permutationArray){
             if(newArray == null){
                 break;
             }
-            else if(step<array.length){
+            else if(step<array.length && array[step]!==null){
                 var newArrayCut1
                 var newArrayCut
                 newArrayCut1 =[...newArray]
@@ -301,7 +321,7 @@ const recursionFunction2 = function(step, array, permutationArray){
                     console.log(newArrayCut)
                  permutationArray.push(newArrayCut.join(''));
                 }
-                 step += 1;
+                 
 
                 recursionFunction2(step, newArray,permutationArray)
             }
@@ -334,7 +354,7 @@ function swap2(a, b, array) {
 
 
 
-mainFunction2("cat");
+mainFunction("baskw");
 
 
 
