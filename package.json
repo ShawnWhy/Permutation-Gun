@@ -1,0 +1,23 @@
+{
+  "name": "permutation-gun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShawnWhy/Permutation-Gun.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShawnWhy/Permutation-Gun/issues"
+  },
+  "homepage": "https://github.com/ShawnWhy/Permutation-Gun#readme",
+  "dependencies": {
+    "simple-spellchecker": "^1.0.2"
+  }
+}

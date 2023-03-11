@@ -1,8 +1,5 @@
 
 var SpellChecker = require('simple-spellchecker');
-// const spell = require('spell-checker-js')
-
-
 
 function swap(a, b, array) {
     newArray = array
