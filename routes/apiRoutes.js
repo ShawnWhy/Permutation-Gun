@@ -29,11 +29,13 @@ module.exports = function(app) {
           console.log(newArray)
               
         }
-             if(step>=length-1){
+             if(step>length-1){
+
      console.log(newArray)
     //  res.writeHead(200, {'Content-Type': 'text/html'});
       res.write(JSON.stringify(newArray));
       return res.end();
+      
     }
     }
     })
