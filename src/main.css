@@ -1,0 +1,32 @@
+.gunBody{
+width:300px;
+height:400px;
+background-color: aqua;
+}
+
+
+.barrel{
+
+width:300px;
+height:400px;
+background-color: aqua;
+
+}
+
+.magazine{
+width:300px;
+height:400px;
+background-color: aqua;
+}
+
+.gunContainer{
+background-color: aqua;
+
+}
+
+.inputContainer{
+width:300px;
+height:400px;
+background-color: aqua;
+}
+

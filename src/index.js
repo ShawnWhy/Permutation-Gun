@@ -1,5 +1,6 @@
 
-var SpellChecker = require('simple-spellchecker');
+import style from './main.css'
+import axios from "axios";
 
 function swap(a, b, array) {
     newArray = array
@@ -64,9 +65,9 @@ const recursionFunction = function(step, array, permutationArray){
 
 function swap2(a, b, array) {
    
-    newArray = array
+    var newArray = array
     if(a !== b){
-    temp = newArray[a];
+    var temp = newArray[a];
     newArray[a] = newArray[b];
     newArray[b] = temp;
 
@@ -79,7 +80,7 @@ function swap2(a, b, array) {
 
 const mainFunction2 = async function(string){
 
-permutationArray = [];
+var permutationArray = [];
 var originalStep= 0;
 
 var StringToArray = string.split('');
@@ -140,44 +141,31 @@ const recursionFunction2 = function(step, array, permutationArray){
 
 
 
-mainFunction2("bored").then((resultArray)=>{
+mainFunction2("catsby").then((resultArray)=>{
 console.log(resultArray)
 
-resultArray.forEach(element => {
-    // if(element==="ored"){
-    //     console.log(element);
-    // }
-  
-
-    SpellChecker.getDictionary("en-US", function(err, dictionary) {
-    if(!err) {
-        var isWord =  dictionary.spellCheck(element);
-        if(isWord) {
-            console.log(element)
-        }
+axios.post("/api/getSpellCheck",resultArray).then(res=>{
+    if(res.data!==null){
+        console.log(res.data);
     }
-});    
-
+}) .catch((err) => {
+console.log(err);
+})
+// resultArray.forEach(element => {
+// setTimeout(() => {
     
+
+// console.log(element);
+// if(element !== null){
+// axios.get("/api/getSpellCheck",{word:element}).then(res=>{
+//         console.log(res.data);
+    
+// }) .catch((err) => {
+// console.log(err);
+
+// })
+// }
+// }, 1800);    
 });
-}
-)
-
-
-                                         
-            //     if(i<j){
-            //     var newArrayCut = newArray.splice(i, j+1 ) 
-                
-
-            //      }
-                
-            //     else if (j<i){
-            //     var newArrayCut = newArray.splice(j, i+1) 
-            //    }
-
-            //     if(newArrayCut.length>1){
-            //         console.log("pushing the cut array")
-            //           if(permutationArray.indexOf(newArrayCut.join(''))===-1){
-            //             permutationArray.push(newArrayCut.join(''));
-            //     }
-            //     }
+// }
+// )
