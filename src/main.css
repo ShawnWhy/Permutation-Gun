@@ -1,6 +1,15 @@
 
 body{
     display:block;
+    overflow: hidden;
+}
+.warnMessage{
+    font-size:6vh;
+    font-weight:bold;
+    color:orangered;
+    width:50%;
+    position:absolute;
+    left:30%;
 }
 .gunBody{
 position:absolute;
@@ -44,7 +53,7 @@ overflow:hidden;
 }
 .bullet{
  width:100%;
- position:absolute;   
+ /* position:absolute;    */
 }
 .gunContainer{
     position:absolute;
@@ -131,4 +140,40 @@ input{    display: block;
 .wheelSmall .spoke{
     background-color: grey;
     left:0px;
+}
+
+.bulletReady{
+    font-size:large;
+    font-weight:bold;
+
+}
+
+.bulletShot{
+    animation:shootBullet .5s both linear;
+}
+
+@keyframes shootBullet {
+    0%{transform:translate(0,0)}
+    100%{transform:translate(0,-500px)}
+    
+}
+.fireButton{
+top:-408px;
+left:350px;
+height:200px;
+width:75px;
+position:absolute;
+background-color: rgb(19, 65, 94);
+
+}
+
+.fireButtonStart{
+    animation:fireButtonStart .5s both linear;
+    animation-delay: 3s;
+}
+
+@keyframes fireButtonStart {
+    0%{transform:translate(0,0)}
+    100%{transform:translate(0,-30px)}
+    
 }

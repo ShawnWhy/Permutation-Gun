@@ -177,13 +177,45 @@ mainFunction2(input).then((resultArray)=>{
 })
   
 };
+var gunThrottle = "off";
 
+const constructButton = ()=>{
+var fireButton = $(".fireButton");
+$(fireButton).addClass("fireButtonStart");
+}
 
+$(".fireButton").on("click",(e)=>{
+    console.log("shoot gun")
+    e.stopPropagation();
+    e.preventDefault();
+    shootGun($(".bullet"))
+})
+
+const shootGun = function(array){
+    console.log(array)
+    
+gunThrottle = "on";
+var bulletItem = array[0]
+console.log($(bulletItem).attr("letter"));
+console.log($(bulletItem).css("background-color"))
+ var bulletReady = $("<div>");
+ $(bulletReady).addClass("bulletReady");
+ $(bulletReady).html($(bulletItem).attr("letter"))
+ $(bulletReady).css("color", $(bulletItem).css("background-color"))
+ $(".barrel").append(bulletReady);
+ //finally add the animation that shoots the bullet out of the barrel
+ $(".bulletReady").addClass("bulletShot");
+ $(array[0]).remove();
+ setTimeout(() => {
+    gunThrottle="off"
+ }, 2000);
+}
 
 const constructGun= ()=>{
 console.log("constructing gun")
 setTimeout(() => {
     $(".barrel").addClass("moveBarrel")
+    constructButton()
     
 }, 5000);
 $(".gunContainer").addClass("moveGun")
@@ -199,7 +231,7 @@ for(let i=0; i<20; i++){
     spokeSetColors() 
      spokeInterval = setInterval(() => {
      spokeSetColors() 
-     },1000);
+     },400);
 
 
     }
@@ -241,6 +273,8 @@ var inputForm = $(".inputForm");
 $(inputForm).on("submit",(e)=>{
     e.stopPropagation();
     e.preventDefault();
+    $(".warnMessage").html("")
+
     //use the letter to call the API to get the list of words back
     submitNewLetter();
 
@@ -258,6 +292,7 @@ function createBullets(response){
      var bullet = $("<div>")
     var randNumber = Math.floor(Math.random()*newTitleColors.length)
     var randColor = newTitleColors[randNumber];
+    $(bullet).addClass("bullet");
     $(bullet).css("background-color",randColor);
     $(bullet).css("height",Math.floor(300/response.length)+"px")
     $(bullet).attr("letter",response[i])
@@ -275,6 +310,7 @@ var input = $(".typeInput")
 var value= $(input).val();
 console.log(value);
 if(value.length<=5){
+$('input').css("display","none");
 constructGun();
 getWords(value).then(response=>{
     console.log("got response");
@@ -301,5 +337,8 @@ mainFunction2(value).then((resultArray)=>{
 // console.log(err);
 // })
 })
+}
+else{
+    $(".warnMessage").html("Please use less than 5 letters, else the browser can't handel it")
 }
 }
