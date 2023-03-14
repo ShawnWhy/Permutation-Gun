@@ -1,32 +1,134 @@
+
+body{
+    display:block;
+}
 .gunBody{
-width:300px;
-height:400px;
-background-color: aqua;
+position:absolute;
+bottom: 110px;
+left:50px;
+width:700px;
+height:300px;
+border-radius: 300px 300px 0 0;
+background-color: rgb(19, 65, 94);
+}
+
+.variant{
+    float: left;
+    margin-left:3px;
 }
 
 
 .barrel{
-
-width:300px;
-height:400px;
-background-color: aqua;
+position:absolute;
+width:50px;
+height:300px;
+left:500px;
+bottom:200px;
+transform:rotate(90deg);
+background-color:rgb(19, 65, 94);
 
 }
 
 .magazine{
+    position:absolute;
 width:300px;
-height:400px;
-background-color: aqua;
-}
+height:200px;
+border-radius: 100px 100px 0 0;
+background-color: rgb(116, 143, 143);
+border:5px solid rgb(19, 65, 94);
+z-index:2;
+left:120px;
+bottom:110px;
+overflow:hidden;
 
+}
+.bullet{
+ width:100%;
+ position:absolute;   
+}
 .gunContainer{
-background-color: aqua;
+    position:absolute;
+    left:-100%;
+    bottom:0px;
+
+}
+.moveGun{
+    animation:moveTank both 5s linear;
+}
+
+@keyframes moveTank {
+    0%{left:-50%}
+    100%{left:0%}
+    
+}
+.moveBarrel{
+    animation:rotateCannon both 2s;
 
 }
 
-.inputContainer{
-width:300px;
-height:400px;
-background-color: aqua;
+@keyframes rotateCannon {
+    0%{transform:rotate(90deg);}
+    100%{transform:rotate(55deg);}
+    
 }
 
+.wheel{
+    top:50%;
+    left:50%;
+    position:absolute;
+    height:300px;
+    width:300px;
+    border-radius:150px;
+    background-color: black;
+    transform-origin:center;
+    animation:wheelSpin 2s linear infinite;
+}
+
+.treads{
+    position:absolute;
+    width:800px;
+    height:100px;
+    /* left:-100%; */
+    border-radius: 50px;
+    border:grey solid 5px;
+    display: block;
+    flex-direction: row;
+    z-index:2;
+    bottom:0;
+}
+.wheelSmall{
+    float:left;
+    top:10px;
+    position:relative;
+    margin-left:10px;
+    margin-right:10px;
+    height:80px;
+    width:80px;
+    border-radius:40px;
+    background-color: black;
+    transform-origin:center;
+    animation:wheelSpin 2s linear infinite;
+}
+@keyframes wheelSpin{
+    0%{transform:rotate(0deg)}
+    100%{transform: rotate(360deg);}
+}
+
+.spoke{
+    position:absolute;
+    transform-origin: center;
+    height:10px;
+    width:400px;
+    left:-50px;
+    top:150px;
+}
+input{    display: block;
+    margin: auto;
+    vertical-align: middle;
+    top: 200px;
+    position: relative}
+
+.wheelSmall .spoke{
+    background-color: grey;
+    left:0px;
+}
