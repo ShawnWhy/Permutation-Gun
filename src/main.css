@@ -24,6 +24,12 @@ background-color: rgb(19, 65, 94);
 .variant{
     float: left;
     margin-left:3px;
+    animation:shiftleft .2c both ease-out;
+}
+@keyframes shiftleft {
+    0%{transform:translate(20px)}
+    100%{transform:translate(0px)}
+    
 }
 
 
@@ -153,8 +159,8 @@ input{    display: block;
 }
 
 @keyframes shootBullet {
-    0%{transform:translate(0,0)}
-    100%{transform:translate(0,-500px)}
+    0%{transform:translate(0,0)scale(1); opacity:1;}
+    100%{transform:translate(0,-500px)scale(5); opacity:.1}
     
 }
 .fireButton{

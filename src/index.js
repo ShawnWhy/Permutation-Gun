@@ -188,8 +188,20 @@ $(".fireButton").on("click",(e)=>{
     console.log("shoot gun")
     e.stopPropagation();
     e.preventDefault();
+    if(gunThrottle=="off"){
     shootGun($(".bullet"))
+    }
 })
+function addBulletToPile(){
+var newBrick = $("<div>");
+$(newBrick).html($(".bulletShot").html());
+$(newBrick).css("color", $(".bulletShot").css("color"));
+$(newBrick).addClass("variant");
+$("body").append(newBrick);
+$(".bulletShot").remove();
+
+
+}
 
 const shootGun = function(array){
     console.log(array)
@@ -207,8 +219,9 @@ console.log($(bulletItem).css("background-color"))
  $(".bulletReady").addClass("bulletShot");
  $(array[0]).remove();
  setTimeout(() => {
+    addBulletToPile()
     gunThrottle="off"
- }, 2000);
+ }, 500);
 }
 
 const constructGun= ()=>{
