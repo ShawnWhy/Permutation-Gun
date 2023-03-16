@@ -151,31 +151,30 @@ var mockResponse = ['cat', 'cst', 'abc', 'caty', 'act', 'tba', 'bat', 'tab', 'at
 const getWords = async function(input){
 console.log("getting words");
 console.log(input);
-  const setTimeoutPromise = (timeout) => {
-    return new Promise((resolve) => setTimeout(resolve, timeout));
-  };
-  await setTimeoutPromise(5000);
-  return mockResponse;
+//   const setTimeoutPromise = (timeout) => {
+//     return new Promise((resolve) => setTimeout(resolve, timeout));
+//   };
+//   await setTimeoutPromise(5000);
+//   return mockResponse;
 
-
-
-mainFunction2(input).then((resultArray)=>{
+return mainFunction2(input).then((resultArray)=>{
     resultArray.forEach(result=>{
         var variant = $("<div>")
         $(variant).html(result)
         $("body").push(variant);
     })
 // console.log(resultArray)
-//temporarily disabled to test the front end
-// axios.post("/api/getSpellCheck",resultArray).then(res=>{
-//     if(res.data!==null){
-//         console.log(res.data);
-//     }
-// }) .catch((err) => {
-// console.log(err);
-// })
+return axios.post("/api/getSpellCheck",resultArray).then(res=>{
+    if(res.data!==null){
+        console.log(res.data)
+        return res.data
+    }
+}) .catch((err) => {
+console.log(err);
+return err
 })
-  
+})
+
 };
 var gunThrottle = "off";
 
@@ -263,7 +262,7 @@ for(let i=0; i<20; i++){
 
 function spokeSetColors(){
 var spokes = $(".wheel .spoke");
-console.log(spokes)
+// console.log(spokes)
 for(let i = 0; i<spokes.length; i++){
     setTimeout(() => {
     var randNumber = Math.floor(Math.random()*newTitleColors.length)
